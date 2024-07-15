@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+}
+
+group 'ru.afanasyev'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.camunda.bpm.dmn:camunda-engine-dmn-bom:7.21.0'
+    }
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok'
+
+    implementation "org.camunda.bpm.dmn:camunda-engine-dmn"
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+
+    annotationProcessor 'org.projectlombok:lombok'
+
+    runtimeOnly 'org.postgresql:postgresql'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_0vs6zje" name="DRD" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="discount" name="discount">
+    <extensionElements>
+      <biodi:bounds x="320" y="130" width="180" height="80" />
+      <biodi:edge source="InputData_1c65tpd">
+        <biodi:waypoints x="579" y="401" />
+        <biodi:waypoints x="439" y="210" />
+      </biodi:edge>
+      <biodi:edge source="userGroup">
+        <biodi:waypoints x="325" y="370" />
+        <biodi:waypoints x="402" y="210" />
+      </biodi:edge>
+      <biodi:edge source="gender">
+        <biodi:waypoints x="548" y="384" />
+        <biodi:waypoints x="450" y="210" />
+      </biodi:edge>
+      <biodi:edge source="KnowledgeSource_1tl8dnb">
+        <biodi:waypoints x="643" y="225" />
+        <biodi:waypoints x="503" y="170" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_1c65tpd" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#userGroup" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#gender" />
+    </informationRequirement>
+    <authorityRequirement>
+      <requiredAuthority href="#KnowledgeSource_1tl8dnb" />
+    </authorityRequirement>
+    <decisionTable id="decisionTable_1">
+      <input id="InputClause_05e7r0m">
+        <inputExpression id="LiteralExpression_0c593g5" typeRef="integer">
+          <text>userGroup</text>
+        </inputExpression>
+      </input>
+      <input id="input_1">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>gender</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" name="discount" typeRef="double" />
+      <rule id="DecisionRule_1349own">
+        <inputEntry id="UnaryTests_0dqlmvi">
+          <text>1</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_164clpc">
+          <text>"MALE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1df4hsq">
+          <text>2.1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jl5aii">
+        <inputEntry id="UnaryTests_175ia27">
+          <text>1</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gw4mz8">
+          <text>"FEMALE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1sb5f4f">
+          <text>0.2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_14g2fdt">
+        <inputEntry id="UnaryTests_0820hib">
+          <text>2</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tm8h3o">
+          <text>"MALE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kmr9h4">
+          <text>2.3</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1c6dyr9">
+        <inputEntry id="UnaryTests_09he5x1">
+          <text>2</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ur69j7">
+          <text>"FEMALE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_127jh4a">
+          <text>0.4</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="userGroup" name="userGroup">
+    <extensionElements>
+      <biodi:bounds x="216" y="370" width="180" height="80" />
+      <biodi:edge source="InputData_0pzgmmq">
+        <biodi:waypoints x="311" y="517" />
+        <biodi:waypoints x="308" y="450" />
+      </biodi:edge>
+      <biodi:edge source="age">
+        <biodi:waypoints x="310" y="502" />
+        <biodi:waypoints x="311" y="450" />
+      </biodi:edge>
+      <biodi:edge source="KnowledgeSource_1tl8dnb">
+        <biodi:waypoints x="643" y="268" />
+        <biodi:waypoints x="396" y="384" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_0pzgmmq" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#age" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_156ou3i">
+      <input id="InputClause_1k7g9on">
+        <inputExpression id="LiteralExpression_1qa651r" typeRef="integer">
+          <text>age</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1vliaka" name="userGroup" typeRef="integer" />
+      <rule id="DecisionRule_0ti4vfc">
+        <inputEntry id="UnaryTests_1uoxdzs">
+          <text>&lt;=30</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1b43fvo">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0zd1oia">
+        <inputEntry id="UnaryTests_0s43vkt">
+          <text>&gt;30</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07sd991">
+          <text>2</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="gender" name="gender">
+    <extensionElements>
+      <biodi:bounds x="498" y="384" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="age" name="age">
+    <extensionElements>
+      <biodi:bounds x="246" y="502" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <knowledgeSource id="KnowledgeSource_1tl8dnb" name="Данные о клиенте&#10;">
+    <extensionElements>
+      <biodi:bounds x="643" y="212" width="100" height="63" />
+    </extensionElements>
+  </knowledgeSource>
+  <decision id="allowance" name="allowance">
+    <extensionElements>
+      <biodi:bounds x="320" y="-7" width="180" height="80" />
+      <biodi:edge source="discount">
+        <biodi:waypoints x="411" y="130" />
+        <biodi:waypoints x="409" y="73" />
+      </biodi:edge>
+    </extensionElements>
+    <variable id="InformationItem_1d8uck1" name="allowance" typeRef="double" />
+    <informationRequirement>
+      <requiredDecision href="#discount" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1v3wg0q" expressionLanguage="feel">
+      <text>discount+0.1</text>
+    </literalExpression>
+  </decision>
+  <textAnnotation id="TextAnnotation_1uec2rt">
+    <extensionElements>
+      <biodi:bounds x="867" y="199" width="100" height="80" />
+    </extensionElements>
+    <text>Источник знаний
+
+Игнорируется движком</text>
+  </textAnnotation>
+  <association id="Association_15zm53i">
+    <extensionElements>
+      <biodi:edge source="KnowledgeSource_1tl8dnb">
+        <biodi:waypoints x="743" y="243" />
+        <biodi:waypoints x="867" y="240" />
+      </biodi:edge>
+    </extensionElements>
+    <sourceRef href="#KnowledgeSource_1tl8dnb" />
+    <targetRef href="#TextAnnotation_1uec2rt" />
+  </association>
+</definitions>
